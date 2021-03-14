@@ -16,8 +16,8 @@
   "editable": true,
   "gnetId": 9524,
   "graphTooltip": 0,
-  "id": 13,
-  "iteration": 1615755281906,
+  "id": 14,
+  "iteration": 1615761208555,
   "links": [],
   "panels": [
     {
@@ -67,7 +67,8 @@
       "pluginVersion": "7.4.2",
       "targets": [
         {
-          "expr": "machine_cpu_cores",
+          "expr": "count(node_cpu_seconds_total{mode=\"system\"})",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -493,7 +494,8 @@
       "pluginVersion": "7.4.2",
       "targets": [
         {
-          "expr": "node_filesystem_avail_bytes {mountpoint=\"/\", device!=\"/dev/mapper/cl_nexus-root\",fstype!=\"rootfs\", device!=\"/dev/bitbucket-prod-vg/root\"} \nor \nnode_filesystem_avail_bytes {mountpoint=\"/usr/local/nexus-data\"}\nor\nnode_filesystem_avail_bytes {mountpoint=\"/opt\"}",
+          "expr": "node_filesystem_avail_bytes {mountpoint=\"/\", device!=\"/dev/mapper/cl_nexus-root\",fstype!=\"rootfs\", device!=\"/dev/bitbucket-prod-vg/root\"}\nor \nnode_filesystem_avail_bytes {mountpoint=\"/usr/local/nexus-data\"}\nor\nnode_filesystem_avail_bytes {mountpoint=\"/opt\"}",
+          "instant": false,
           "interval": "30",
           "legendFormat": "",
           "refId": "A"
@@ -551,7 +553,8 @@
       "pluginVersion": "7.4.2",
       "targets": [
         {
-          "expr": "machine_memory_bytes/1024/1024/1000",
+          "expr": "node_memory_MemTotal_bytes/1024/1024/1000",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -1292,18 +1295,14 @@
       }
     }
   ],
-  "refresh": false,
+  "refresh": "10s",
   "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": true,
-          "text": "Prometheus-1",
-          "value": "Prometheus-1"
-        },
+        "current": {},
         "description": null,
         "error": null,
         "hide": 0,
@@ -1352,5 +1351,5 @@
   "timezone": "browser",
   "title": "Host",
   "uid": "UoJEAP7Mk",
-  "version": 3
+  "version": 2
 }
