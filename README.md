@@ -10,9 +10,15 @@ docker-compose -f docker-compose.yml up -d
 
 # Run Prometheus (client server)
 
-## Authentication
+**Prometheus URL**
 
-Before installing Prometheus, you need to create a authentication file.
+```
+http://ip:82/prom
+```
+
+**Authentication**
+
+Before installing Prometheus, you need to create an authentication file.
 
 The script  `generate_credentials.sh` creates a file `.htpasswd` used by nginx for basic Prometheus authentication.
 
@@ -22,13 +28,13 @@ You need to change the `login` and `password` to your values
 ./nginx/generate_credentials.sh login password
 ```
 
-## Run
+**Run**
 
 ```bash
 docker-compose -f docker-compose.client.yml  up -d
 ```
 
-## Update credentials
+**Update credentials**
 
 Just run the `generate_credentials.sh` again and do:
 
