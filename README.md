@@ -7,7 +7,6 @@ docker-compose -f docker-compose.yml up -d
 ```
 
 
-
 # Run Prometheus (client server)
 
 **Prometheus URL**
@@ -15,6 +14,12 @@ docker-compose -f docker-compose.yml up -d
 ```
 http://ip:82/prom
 ```
+
+**Ports**
+
+- Prometheus: `9050`
+- Nodeexporter: `9060`
+- Pushgateway: `9061`  
 
 **Authentication**
 
@@ -41,3 +46,4 @@ Just run the `generate_credentials.sh` again and do:
 ```bash
 docker-compose -f docker-compose.client.yml  up -d --force-recreate nginx
 ```
+
