@@ -19,6 +19,7 @@ services:
       - '--storage.tsdb.retention.time=200h'
       - '--web.enable-lifecycle'
     restart: unless-stopped
+    network_mode: "host"
     labels:
       org.label-schema.group: "monitoring"
 
@@ -35,6 +36,15 @@ services:
       - '--path.sysfs=/host/sys'
       - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
     restart: unless-stopped
+    network_mode: "host"
+    labels:
+      org.label-schema.group: "monitoring"
+
+  pushgateway:
+    image: prom/pushgateway:v1.4.0
+    container_name: pushgateway
+    restart: unless-stopped
+    network_mode: "host"
     labels:
       org.label-schema.group: "monitoring"
 
@@ -49,15 +59,9 @@ services:
       - GF_SECURITY_ADMIN_USER=${ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${ADMIN_PASSWORD:-admin}
       - GF_USERS_ALLOW_SIGN_UP=false
+      - GF_INSTALL_PLUGINS=yesoreyeram-boomtable-panel
     restart: unless-stopped
-    ports:
-      - 3000:3000
+    network_mode: "host"
     labels:
       org.label-schema.group: "monitoring"
 
-  pushgateway:
-    image: prom/pushgateway:v1.4.0
-    container_name: pushgateway
-    restart: unless-stopped
-    labels:
-      org.label-schema.group: "monitoring"
